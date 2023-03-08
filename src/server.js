@@ -7,6 +7,7 @@ import { Server as Socket } from "socket.io";
 
 import config from "./config.js";
 import authWebRouter from "./routers/web/auth.js";
+import homeWebRouter from "./routers/web/home.js";
 
 function createServer() {
   const app = express();
@@ -14,8 +15,6 @@ function createServer() {
   const io = new Socket(httpServer);
 
   io.on("connection", async (socket) => {
-    // console.log("Nuevo cliente conectado!");
-
     mensajesWs(socket);
     productosWs(socket);
   });
@@ -45,6 +44,7 @@ function createServer() {
 
   /*----------- rutas -----------*/
   app.use(authWebRouter);
+  app.use(homeWebRouter);
 
   app.get("/test", (req, res) => {
     res.send("Hola Mundo!");
