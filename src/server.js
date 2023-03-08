@@ -3,6 +3,8 @@ import express from "express";
 import { Server as HttpServer } from "http";
 import { Server as Socket } from "socket.io";
 
+import authWebRouter from "./routers/web/auth.js";
+
 function createServer() {
   const app = express();
   const httpServer = new HttpServer(app);
@@ -21,7 +23,9 @@ function createServer() {
   app.use(express.static("public"));
 
   app.set("view engine", "ejs");
-  app.set("views", "../public/views");
+  app.set("views", "./views");
+
+  app.use(authWebRouter);
 
   app.get('/test', (req, res) => {
     res.send('Hola Mundo!');
