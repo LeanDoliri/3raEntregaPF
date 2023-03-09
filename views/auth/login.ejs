@@ -1,0 +1,26 @@
+<%- include('../templetes/head', {tituloWeb:'Login'}) %>
+
+<body>
+    <div class="container mt-3">
+        <div class="jumbotron">
+            <h1>Login de Usuario</h1>
+            <br>
+            <form action="/login" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label for="email">Ingrese su email</label>
+                    <input id="email" class="form-control" type="email" name="email" required
+                        placeholder="email@exaple.com">
+                    <br>
+                    <label for="password">Ingrese su contraseña</label>
+                    <input id="password" class="form-control" type="password" name="password" required>
+                </div>
+                <button class="btn btn-success mt-3">Enviar</button>
+            </form>
+            <hr>
+            <div class="text-left">
+                <button class="btn btn-success my-3" onclick="location.href = '/signin'">Ir a Registro</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

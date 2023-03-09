@@ -55,13 +55,14 @@ passport.deserializeUser(async (email, done) => {
   done(null, user);
 });
 
+/*----------- rutas -----------*/
 /*----- login -----*/
 authWebRouter.get("/", (req, res) => {
   res.redirect("login");
 });
 
 authWebRouter.get("/login", (req, res) => {
-  res.render("login.ejs");
+  res.render("auth/login.ejs");
 });
 
 authWebRouter.post(
@@ -77,18 +78,18 @@ authWebRouter.get("/logout", (req, res) => {
   if (!req.session.passport?.user) {
     res.redirect("login");
   } else {
-    res.render("logout.ejs", { nombre: req.session.passport?.user.nombre });
+    res.render("auth/logout.ejs", { nombre: req.session.passport?.user.nombre });
   }
 });
 
 /*----- login-error -----*/
 authWebRouter.get("/login-error", (req, res) => {
-  res.render("login-error.ejs");
+  res.render("auth/login-error.ejs");
 });
 
 /*----- signin -----*/
 authWebRouter.get("/signin", (req, res) => {
-  res.render("signin.ejs");
+  res.render("auth/signin.ejs");
 });
 
 authWebRouter.post("/signin", async (req, res) => {
@@ -97,7 +98,7 @@ authWebRouter.post("/signin", async (req, res) => {
   const userExist = usersDb.find((usr) => usr.email == email);
 
   if (userExist) {
-    res.render("signin-error.ejs");
+    res.render("auth/signin-error.ejs");
   } else {
     const newUser = {
       nombre,
