@@ -3,7 +3,30 @@
 <body>
     <div class="container my-3">
         <div class="jumbotron">
-            <%- include('templetes/navbar') %>
+            <header>
+                <%- include('templetes/navbar') %>
+            </header>
+            <div class="containger-fluid alert-primary mt-3 mb-3">
+                <div class="p-3">
+                    <h1>Mi perfil</h1>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <img src="" alt="" class="p-3">
+                    </div>
+                    <div class="col-8">
+                        <ul class="list-group list-group-flush p-3">
+                            <li class="list-group-item">
+                                <h1><strong> <%= user.nombre  %> </strong></h1>
+                                <h4><strong> <%= user.edad  %> años</strong></h4>
+                            </li>
+                            <li class="list-group-item"><strong>Dirección: </strong> <%= user.direccion  %></li>
+                            <li class="list-group-item"><strong>Teléfono: </strong> <%= user.telefono  %></li>
+                            <li class="list-group-item"><strong>Email: </strong> <%= user.email  %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
