@@ -15,8 +15,10 @@ const argv = minimist(process.argv.slice(2), {
 
 const PORT = parseInt(argv.port);
 
+const portRender = process.env.PORT || 8080;
+
 export default {
-  PORT: PORT,
+  PORT: portRender,
   mode: argv.mode,
   mongoRemote: {
     cnxStr: process.env.MONGODB_REMOTE,

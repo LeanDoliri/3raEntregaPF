@@ -1,8 +1,8 @@
 import cluster from "cluster";
 import { cpus } from "os";
 
-import { createServer } from "./src/server.js";
-import config from "./src/config.js";
+import { createServer } from "./server.js";
+import config from "./config.js";
 
 const app = createServer();
 
