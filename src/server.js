@@ -7,7 +7,7 @@ import { Server as Socket } from "socket.io";
 
 import config from "./config.js";
 import authWebRouter from "./routers/auth.js";
-import homeWebRouter from "./routers/web/home.js";
+import homeWebRouter from "./routers/home.js";
 
 function createServer() {
   const app = express();
