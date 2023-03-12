@@ -6,7 +6,7 @@ import { Server as HttpServer } from "http";
 import { Server as Socket } from "socket.io";
 
 import config from "./config.js";
-import authWebRouter from "./routers/web/auth.js";
+import authWebRouter from "./routers/auth.js";
 import homeWebRouter from "./routers/web/home.js";
 
 function createServer() {

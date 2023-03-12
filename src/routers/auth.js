@@ -4,7 +4,7 @@ import { Strategy } from "passport-local";
 const LocalStrategy = Strategy;
 
 import { Router } from "express";
-import ContainerMongoDB from "../../containers/ContainerMongoDB.js";
+import ContainerMongoDB from "../containers/ContainerMongoDB.js";
 
 const authWebRouter = new Router();
 const users = new ContainerMongoDB();
