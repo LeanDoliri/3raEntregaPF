@@ -5,9 +5,10 @@ const LocalStrategy = Strategy;
 
 import { Router } from "express";
 import ContainerMongoDB from "../../containers/ContainerMongoDB.js";
+import userSchema from "../../schemas/userSchema.js";
 
 const authWebRouter = new Router();
-const users = new ContainerMongoDB();
+const usersApi = new ContainerMongoDB(userSchema);
 
 /*----------- bcrypt -----------*/
 async function generateHashPassword(password) {
@@ -28,7 +29,7 @@ passport.use(
       passwordField: "password",
     },
     async function (email, password, done) {
-      const usersDB = await users.getAll();
+      const usersDB = await usersApi.getAll();
       const userExist = usersDB.find((usr) => usr.email == email);
 
       if (!userExist) {
@@ -50,7 +51,7 @@ passport.serializeUser((usuario, done) => {
 });
 
 passport.deserializeUser(async (email, done) => {
-  const usersDb = await users.getAll();
+  const usersDb = await usersApi.getAll();
   const user = usersDb.find((usr) => usr.email == email);
   done(null, user);
 });
@@ -94,7 +95,7 @@ authWebRouter.get("/signin", (req, res) => {
 
 authWebRouter.post("/signin", async (req, res) => {
   const { nombre, direccion, edad, telefono, foto, email, password } = req.body;
-  const usersDb = await users.getAll();
+  const usersDb = await usersApi.getAll();
   const userExist = usersDb.find((usr) => usr.email == email);
 
   if (userExist) {
@@ -109,7 +110,7 @@ authWebRouter.post("/signin", async (req, res) => {
       email,
       password: await generateHashPassword(password),
     };
-    await users.save(newUser);
+    await usersApi.save(newUser);
     res.redirect("/login");
   }
 });

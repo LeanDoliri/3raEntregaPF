@@ -1,24 +1,14 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
 import config from "../config.js";
 import { logError } from "../logs/winston.js";
 
 mongoose.set("strictQuery", false);
 
-const userSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  direccion: { type: String, required: true },
-  edad: { type: Number, required: true },
-  telefono: { type: Number, required: true },
-  foto: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-});
-
 await mongoose.connect(config.mongoRemote.cnxStr, config.mongoRemote.options);
 
 class ContainerMongoDB {
-  constructor() {
-    this.coleccion = mongoose.model("users", userSchema);
+  constructor(model) {
+    this.coleccion = model;
   }
 
   async getById(id) {

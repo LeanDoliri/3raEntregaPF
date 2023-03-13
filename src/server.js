@@ -9,14 +9,15 @@ import config from "./config.js";
 import authWebRouter from "./routers/web/auth.js";
 import homeWebRouter from "./routers/web/home.js";
 
+import productsWs from "./routers/ws/home.js"
+
 function createServer() {
   const app = express();
   const httpServer = new HttpServer(app);
   const io = new Socket(httpServer);
 
   io.on("connection", async (socket) => {
-    mensajesWs(socket);
-    productosWs(socket);
+    productsWs(socket);
   });
 
   app.use(express.json());
